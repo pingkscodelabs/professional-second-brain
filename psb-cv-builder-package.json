@@ -1,0 +1,49 @@
+{
+  "name": "psb-cv-builder",
+  "version": "1.0.0",
+  "description": "PSB CV Builder - Generate tailored CVs by matching job requirements against documented professional experience",
+  "main": "dist/psb-cv-builder-main.js",
+  "types": "dist/psb-cv-builder-main.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest",
+    "test:scenarios": "ts-node test-scenarios.ts",
+    "lint": "eslint src/**/*.ts",
+    "format": "prettier --write src/**/*.ts"
+  },
+  "keywords": [
+    "cv",
+    "resume",
+    "job-matching",
+    "career",
+    "professional-development",
+    "copilot-skill"
+  ],
+  "author": "Professional Second Brain",
+  "license": "MIT",
+  "dependencies": {
+    "js-yaml": "^4.1.0",
+    "yaml": "^2.3.0"
+  },
+  "devDependencies": {
+    "@types/js-yaml": "^4.0.5",
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0",
+    "ts-node": "^10.9.0",
+    "jest": "^29.0.0",
+    "@types/jest": "^29.0.0",
+    "ts-jest": "^29.0.0",
+    "eslint": "^8.0.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "prettier": "^3.0.0"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "extension.json"
+  ]
+}

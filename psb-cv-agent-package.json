@@ -1,0 +1,61 @@
+{
+  "name": "psb-cv-agent",
+  "version": "1.0.0",
+  "description": "Autonomous CV generation and management system for Professional Second Brain",
+  "main": "psb-cv-agent.ts",
+  "types": "psb-cv-agent.ts",
+  "scripts": {
+    "build": "tsc psb-cv-agent.ts --target ES2020 --module commonjs --declaration",
+    "dev": "ts-node psb-cv-agent.ts",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "lint": "eslint psb-cv-agent.ts",
+    "format": "prettier --write psb-cv-agent.ts",
+    "start": "node dist/psb-cv-agent.js",
+    "validate": "tsc --noEmit",
+    "docs": "typedoc psb-cv-agent.ts"
+  },
+  "keywords": [
+    "cv",
+    "resume",
+    "professional-second-brain",
+    "job-application",
+    "tailored-cv",
+    "automation",
+    "agent",
+    "typescript"
+  ],
+  "author": "Professional Second Brain",
+  "license": "MIT",
+  "dependencies": {
+    "js-yaml": "^4.1.0",
+    "yaml": "^2.3.0",
+    "pdfkit": "^0.13.0",
+    "markdown-it": "^13.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/jest": "^29.0.0",
+    "typescript": "^5.0.0",
+    "jest": "^29.0.0",
+    "ts-jest": "^29.0.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "eslint": "^8.0.0",
+    "prettier": "^3.0.0",
+    "ts-node": "^10.0.0",
+    "typedoc": "^0.24.0"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/professional-second-brain/psb-cv-agent"
+  },
+  "bugs": {
+    "url": "https://github.com/professional-second-brain/psb-cv-agent/issues"
+  },
+  "homepage": "https://github.com/professional-second-brain/psb-cv-agent#readme"
+}

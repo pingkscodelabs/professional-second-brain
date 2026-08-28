@@ -1,0 +1,162 @@
+{
+  "name": "psb-onboard",
+  "version": "1.0.0",
+  "displayName": "PSB Onboard",
+  "description": "Transform raw professional information into structured, template-compliant Markdown files with YAML metadata",
+  "publisher": "professional-second-brain",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourrepo/professional-second-brain"
+  },
+  "keywords": [
+    "documentation",
+    "professional",
+    "knowledge-management",
+    "templates",
+    "markdown",
+    "yaml"
+  ],
+  "tools": [
+    {
+      "name": "structure-project",
+      "displayName": "Structure Project Information",
+      "description": "Transform raw text into structured project documentation following the PSB project template",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "rawText": {
+            "type": "string",
+            "description": "Raw text describing a project (e.g., 'I led a Kubernetes migration at CLIENT_A...')"
+          },
+          "category": {
+            "type": "string",
+            "description": "Optional project category (e.g., 'aws', 'kubernetes', 'terraform')",
+            "default": ""
+          },
+          "confidentialityLevel": {
+            "type": "string",
+            "enum": ["PUBLIC", "INTERNAL", "CONFIDENTIAL", "SECRET"],
+            "description": "Confidentiality level of the project information",
+            "default": "CONFIDENTIAL"
+          }
+        },
+        "required": ["rawText"]
+      }
+    },
+    {
+      "name": "structure-achievement",
+      "displayName": "Structure Achievement Information",
+      "description": "Transform raw text into structured achievement documentation following the PSB achievement template",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "rawText": {
+            "type": "string",
+            "description": "Raw text describing an achievement (e.g., 'I optimized infrastructure costs by 40%...')"
+          },
+          "category": {
+            "type": "string",
+            "description": "Optional achievement category (e.g., 'cost-optimization', 'team-leadership')",
+            "default": ""
+          },
+          "confidentialityLevel": {
+            "type": "string",
+            "enum": ["PUBLIC", "INTERNAL", "CONFIDENTIAL", "SECRET"],
+            "description": "Confidentiality level of the achievement information",
+            "default": "CONFIDENTIAL"
+          }
+        },
+        "required": ["rawText"]
+      }
+    },
+    {
+      "name": "structure-skill",
+      "displayName": "Structure Skill Information",
+      "description": "Transform raw text into structured skill documentation following the PSB skill template",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "rawText": {
+            "type": "string",
+            "description": "Raw text describing a skill (e.g., 'I have 5+ years of Kubernetes expertise...')"
+          },
+          "category": {
+            "type": "string",
+            "description": "Optional skill category (e.g., 'infrastructure', 'backend', 'cloud')",
+            "default": ""
+          }
+        },
+        "required": ["rawText"]
+      }
+    },
+    {
+      "name": "structure-client",
+      "displayName": "Structure Client Information",
+      "description": "Transform raw text into structured client documentation following the PSB client template",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "rawText": {
+            "type": "string",
+            "description": "Raw text describing a client engagement (e.g., 'I worked with a fintech startup on...')"
+          },
+          "category": {
+            "type": "string",
+            "description": "Optional industry or vertical (e.g., 'fintech', 'healthcare', 'e-commerce')",
+            "default": ""
+          },
+          "confidentialityLevel": {
+            "type": "string",
+            "enum": ["PUBLIC", "INTERNAL", "CONFIDENTIAL", "SECRET"],
+            "description": "Confidentiality level of the client information",
+            "default": "CONFIDENTIAL"
+          }
+        },
+        "required": ["rawText"]
+      }
+    },
+    {
+      "name": "validate-completeness",
+      "displayName": "Validate Completeness",
+      "description": "Validate completeness of extracted information against template requirements",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "informationType": {
+            "type": "string",
+            "enum": ["project", "skill", "achievement", "client", "adr"],
+            "description": "Type of information to validate"
+          },
+          "extractedData": {
+            "type": "object",
+            "description": "The extracted/structured data to validate"
+          }
+        },
+        "required": ["informationType", "extractedData"]
+      }
+    }
+  ],
+  "commands": [
+    {
+      "command": "psb-onboard.structureProject",
+      "title": "PSB: Structure Project",
+      "description": "Transform raw project information into structured documentation"
+    },
+    {
+      "command": "psb-onboard.structureAchievement",
+      "title": "PSB: Structure Achievement",
+      "description": "Transform raw achievement information into structured documentation"
+    },
+    {
+      "command": "psb-onboard.structureSkill",
+      "title": "PSB: Structure Skill",
+      "description": "Transform raw skill information into structured documentation"
+    },
+    {
+      "command": "psb-onboard.structureClient",
+      "title": "PSB: Structure Client",
+      "description": "Transform raw client information into structured documentation"
+    }
+  ]
+}

@@ -1,0 +1,197 @@
+{
+  "name": "psb-curator-agent",
+  "displayName": "PSB Curator Agent",
+  "description": "Autonomous content organization and curation agent for Professional Second Brain",
+  "version": "1.0.0",
+  "icon": "icon.png",
+  "publisher": "psb",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Formatters",
+    "Other"
+  ],
+  "keywords": [
+    "curator",
+    "organization",
+    "curation",
+    "content",
+    "metadata",
+    "professional",
+    "psb"
+  ],
+  "activationEvents": [
+    "workspaceContains:psb-curator-config.yaml",
+    "onLanguage:yaml",
+    "onLanguage:markdown"
+  ],
+  "main": "./psb-curator-agent.ts",
+  "contributes": {
+    "commands": [
+      {
+        "command": "psb-curator.organize",
+        "title": "PSB Curator: Organize Content",
+        "description": "Organize files into optimal categories based on content analysis"
+      },
+      {
+        "command": "psb-curator.mapRelationships",
+        "title": "PSB Curator: Map Relationships",
+        "description": "Identify and document connections between items"
+      },
+      {
+        "command": "psb-curator.enhanceMetadata",
+        "title": "PSB Curator: Enhance Metadata",
+        "description": "Improve YAML metadata automatically"
+      },
+      {
+        "command": "psb-curator.identifyTrends",
+        "title": "PSB Curator: Identify Trends",
+        "description": "Identify emerging skills and technologies"
+      },
+      {
+        "command": "psb-curator.generateRecommendations",
+        "title": "PSB Curator: Generate Recommendations",
+        "description": "Suggest content additions and improvements"
+      },
+      {
+        "command": "psb-curator.runFullCuration",
+        "title": "PSB Curator: Run Full Curation",
+        "description": "Execute all curation operations"
+      },
+      {
+        "command": "psb-curator.exportResults",
+        "title": "PSB Curator: Export Results",
+        "description": "Export curation results as JSON or Markdown"
+      }
+    ],
+    "configuration": {
+      "title": "PSB Curator Agent",
+      "properties": {
+        "psbCurator.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable PSB Curator Agent"
+        },
+        "psbCurator.autoOrganize": {
+          "type": "boolean",
+          "default": false,
+          "description": "Automatically organize content on changes"
+        },
+        "psbCurator.autoEnhanceMetadata": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically enhance metadata on save"
+        },
+        "psbCurator.depth": {
+          "type": "string",
+          "default": "detailed",
+          "enum": [
+            "surface",
+            "detailed",
+            "comprehensive"
+          ],
+          "description": "Depth of curation analysis (surface=fast, comprehensive=thorough)"
+        },
+        "psbCurator.auto_apply": {
+          "type": "boolean",
+          "default": false,
+          "description": "Automatically apply curation changes without confirmation"
+        },
+        "psbCurator.outputFormat": {
+          "type": "string",
+          "default": "json",
+          "enum": [
+            "json",
+            "markdown",
+            "both"
+          ],
+          "description": "Output format for curation results"
+        },
+        "psbCurator.outputPath": {
+          "type": "string",
+          "default": ".psb/curation-results",
+          "description": "Path for curation results output"
+        },
+        "psbCurator.minConfidenceThreshold": {
+          "type": "number",
+          "default": 75,
+          "minimum": 0,
+          "maximum": 100,
+          "description": "Minimum confidence threshold for suggestions (0-100)"
+        },
+        "psbCurator.preserveExistingMetadata": {
+          "type": "boolean",
+          "default": true,
+          "description": "Preserve existing metadata when enhancing"
+        },
+        "psbCurator.includeCrossRepositoryLinks": {
+          "type": "boolean",
+          "default": false,
+          "description": "Include links across repositories"
+        }
+      }
+    },
+    "menus": {
+      "commandPalette": [
+        {
+          "command": "psb-curator.organize",
+          "when": "workspaceHasRepositoryRoots"
+        },
+        {
+          "command": "psb-curator.mapRelationships",
+          "when": "workspaceHasRepositoryRoots"
+        },
+        {
+          "command": "psb-curator.enhanceMetadata",
+          "when": "workspaceHasRepositoryRoots"
+        },
+        {
+          "command": "psb-curator.identifyTrends",
+          "when": "workspaceHasRepositoryRoots"
+        },
+        {
+          "command": "psb-curator.generateRecommendations",
+          "when": "workspaceHasRepositoryRoots"
+        },
+        {
+          "command": "psb-curator.runFullCuration",
+          "when": "workspaceHasRepositoryRoots"
+        },
+        {
+          "command": "psb-curator.exportResults",
+          "when": "workspaceHasRepositoryRoots"
+        }
+      ],
+      "explorer/context": [
+        {
+          "command": "psb-curator.organize",
+          "when": "explorerResourceIsFolder",
+          "group": "6_psb_curator@1"
+        },
+        {
+          "command": "psb-curator.mapRelationships",
+          "when": "explorerResourceIsFolder",
+          "group": "6_psb_curator@2"
+        },
+        {
+          "command": "psb-curator.enhanceMetadata",
+          "when": "explorerResourceIsFolder",
+          "group": "6_psb_curator@3"
+        }
+      ]
+    },
+    "jsonValidation": [
+      {
+        "fileMatch": "psb-curator-config.json",
+        "url": "./schemas/curator-config.schema.json"
+      }
+    ]
+  },
+  "scripts": {
+    "test": "node ./test-scenarios.ts",
+    "lint": "eslint . --ext .ts",
+    "compile": "tsc",
+    "watch": "tsc -w"
+  }
+}

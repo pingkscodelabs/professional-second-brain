@@ -1,0 +1,236 @@
+# PSB CV Agent Configuration
+# Autonomous CV generation and management system
+
+agent:
+  name: PSB CV Agent
+  version: 1.0.0
+  description: Autonomous CV generation and management system
+  enabled: true
+  environment: production
+
+cvBuilder:
+  # CV Builder Skill endpoint and configuration
+  endpoint: http://localhost:3000/api/cv-builder
+  timeout: 30000  # milliseconds
+  retries: 3
+  retryDelay: 1000  # milliseconds
+  fallbackPath: ./skills/psb-cv-builder-skill
+
+storage:
+  # Directory configurations
+  cvDirectory: ./generated-cvs
+  historyDirectory: ./cv-history
+  analyticsDirectory: ./cv-analytics
+  cacheDirectory: ./cv-cache
+  logDirectory: ./logs/cv-agent
+
+formats:
+  # Supported CV output formats
+  supported:
+    - pdf
+    - markdown
+    - text
+    - json
+  default: pdf
+  # Format-specific configurations
+  pdf:
+    library: pdfkit  # or wkhtmltopdf, puppeteer
+    pageSize: letter
+    margins:
+      top: 0.5in
+      bottom: 0.5in
+      left: 0.75in
+      right: 0.75in
+  markdown:
+    includeMetadata: true
+    linkFormat: reference  # inline or reference
+  text:
+    lineLength: 80
+    includeFormatting: false
+
+templates:
+  # CV template configurations
+  supported:
+    - resume
+    - cv
+    - linkedin
+  default: resume
+  resume:
+    maxPages: 1
+    maxLength: 450  # words
+    focusLevel: brief
+    targetAudience: ats-optimized
+  cv:
+    maxPages: 3
+    maxLength: 2000  # words
+    focusLevel: comprehensive
+    targetAudience: hiring-manager
+  linkedin:
+    maxPages: 1
+    maxLength: 500  # words
+    focusLevel: profile-focused
+    targetAudience: recruiter
+
+performance:
+  # Performance tuning
+  maxParallelGenerations: 5  # Concurrent CV generations
+  batchTimeout: 120000  # milliseconds
+  cacheEnabled: true
+  cacheTTL: 3600  # seconds
+  memoryLimit: 512  # MB
+  timeoutPerGeneration: 30000  # milliseconds
+
+analytics:
+  # Analytics and tracking configuration
+  trackingEnabled: true
+  historyRetention: 90  # days
+  metrics:
+    - generationTime
+    - matchScore
+    - formatDistribution
+    - technologyCoverage
+    - keywordDensity
+  reportingInterval: daily  # daily, weekly, monthly
+  dashboardEnabled: true
+  exportFormats:
+    - json
+    - csv
+    - html
+
+jobMonitoring:
+  # Job opportunity monitoring
+  enabled: true
+  sources:
+    - linkedin
+    - indeed
+    - company-careers
+    - github-jobs
+  checkInterval: 3600000  # milliseconds (1 hour)
+  autoGenerate: false  # Auto-generate CV for new jobs
+  filters:
+    minSalary: null  # Set to filter
+    locations:
+      - remote
+      - us
+    keywords:
+      - typescript
+      - senior
+      - architect
+
+versionControl:
+  # CV version tracking
+  enabled: true
+  autoBackup: true
+  retentionPolicy: all  # all, recent, dated
+  maxVersions: 50
+  trackChanges: true
+
+applicationTracking:
+  # Application status tracking
+  enabled: true
+  statuses:
+    - submitted
+    - pending
+    - shortlisted
+    - rejected
+    - interview
+    - offer
+  autoSync: false  # Auto-sync with LinkedIn/Indeed
+
+improvements:
+  # Content improvement suggestions
+  enabled: true
+  suggestionEngine: ml  # ml or rule-based
+  maxSuggestions: 10
+  impactThresholds:
+    high: 80
+    medium: 50
+    low: 30
+
+logging:
+  # Logging configuration
+  level: info  # debug, info, warn, error
+  format: json  # json or text
+  outputs:
+    - console
+    - file
+  file:
+    path: ./logs/cv-agent/cv-agent.log
+    maxSize: 10mb
+    maxFiles: 10
+    compress: true
+
+security:
+  # Security settings
+  validateCVContent: true
+  maskSensitiveData: true
+  encryptStoredCVs: false
+  requireAuthentication: false
+  rateLimit:
+    enabled: true
+    requestsPerMinute: 60
+
+notifications:
+  # Notification settings
+  enabled: true
+  channels:
+    - console
+    - email
+    - webhook
+  email:
+    enabled: false
+    provider: smtp
+    recipients: []
+  webhook:
+    enabled: false
+    url: null
+  events:
+    - generation-complete
+    - batch-complete
+    - application-update
+    - quality-issues
+
+integration:
+  # Third-party integrations
+  psb-cv-builder:
+    enabled: true
+    priority: 1
+  psb-quality-checker:
+    enabled: true
+    validateCVs: true
+  psb-analyzer:
+    enabled: true
+    analyzeMatches: true
+  external-ats:
+    enabled: false
+    systems: []
+
+development:
+  # Development settings
+  mockMode: false  # Use mock CV builder for testing
+  debugLogging: false
+  dryRun: false  # Don't write files
+  testDataPath: ./test-data
+
+quality:
+  # Quality assurance settings
+  minimumMatchScore: 60  # Minimum acceptable match score
+  validateFormatting: true
+  checkForFabrication: true
+  verifyEvidence: true
+  keywordOptimization: true
+  readabilityCheck: true
+
+scheduling:
+  # Scheduled operations
+  enabled: true
+  jobs:
+    - name: daily-analytics-report
+      schedule: "0 9 * * *"  # 9 AM daily
+      operation: analyze
+    - name: weekly-backup
+      schedule: "0 0 * * 0"  # Sunday midnight
+      operation: backup
+    - name: monthly-cleanup
+      schedule: "0 0 1 * *"  # 1st of month
+      operation: cleanup

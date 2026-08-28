@@ -1,0 +1,45 @@
+{
+  "name": "psb-quality-checker",
+  "version": "1.0.0",
+  "description": "Comprehensive quality assurance system for the Professional Second Brain repository - validates fabrication, evidence, confidentiality, completeness, and consistency",
+  "main": "psb-quality-checker.ts",
+  "scripts": {
+    "build": "tsc",
+    "check:file": "ts-node -e \"import('./psb-quality-checker').then(m => m.default.checkFile(process.argv[2]))\" --",
+    "audit:repo": "ts-node -e \"import('./psb-repo-auditor').then(m => m.RepositoryAuditor.auditRepository({scope: 'all', dimension: 'all', generateSummary: true, excludePatterns: [], verbose: false}))\" --",
+    "test": "jest",
+    "lint": "eslint .",
+    "format": "prettier --write \"*.ts\""
+  },
+  "keywords": [
+    "quality-assurance",
+    "validation",
+    "fabrication-detection",
+    "evidence-verification",
+    "confidentiality-audit",
+    "consistency-checking",
+    "documentation",
+    "copilot",
+    "skill"
+  ],
+  "author": "Professional Second Brain",
+  "license": "MIT",
+  "dependencies": {
+    "js-yaml": "^4.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/jest": "^29.0.0",
+    "typescript": "^5.0.0",
+    "ts-node": "^10.9.0",
+    "jest": "^29.0.0",
+    "ts-jest": "^29.0.0",
+    "eslint": "^8.0.0",
+    "@typescript-eslint/eslint-plugin": "^5.0.0",
+    "@typescript-eslint/parser": "^5.0.0",
+    "prettier": "^2.8.0"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}

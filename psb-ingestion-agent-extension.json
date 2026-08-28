@@ -1,0 +1,281 @@
+{
+  "name": "psb-ingestion-agent",
+  "version": "1.0.0",
+  "displayName": "PSB Ingestion Agent",
+  "description": "Autonomous agent for bulk loading professional content into the Professional Second Brain repository",
+  "publisher": "professional-second-brain",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourrepo/professional-second-brain"
+  },
+  "keywords": [
+    "professional-development",
+    "knowledge-management",
+    "bulk-import",
+    "automation",
+    "career-documentation",
+    "batch-processing",
+    "metadata-indexing"
+  ],
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "tools": [
+    {
+      "name": "ingest-content",
+      "displayName": "Ingest Content (Bulk)",
+      "description": "Bulk load professional content from multiple sources with batch processing",
+      "category": "ingestion",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "content_source": {
+            "type": "string",
+            "enum": ["file", "text", "csv", "json"],
+            "description": "Source of content: file paths, raw text, CSV data, or JSON data"
+          },
+          "content": {
+            "oneOf": [
+              { "type": "string" },
+              {
+                "type": "array",
+                "items": { "type": "string" }
+              }
+            ],
+            "description": "Content to ingest: single string or array of strings (file paths or content)"
+          },
+          "category": {
+            "type": "string",
+            "enum": ["projects", "achievements", "skills", "clients", "all"],
+            "description": "Category to route content to"
+          },
+          "mode": {
+            "type": "string",
+            "enum": ["single", "batch", "continuous"],
+            "description": "Processing mode",
+            "default": "batch"
+          },
+          "auto_commit": {
+            "type": "boolean",
+            "description": "Automatically commit changes to git",
+            "default": false
+          },
+          "quality_threshold": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100,
+            "description": "Minimum quality score (0-100) required to accept items",
+            "default": 60
+          },
+          "skip_duplicates": {
+            "type": "boolean",
+            "description": "Skip items that appear to be duplicates",
+            "default": true
+          },
+          "rollback_on_failure": {
+            "type": "boolean",
+            "description": "Rollback changes if ingestion fails",
+            "default": true
+          }
+        },
+        "required": ["content_source", "content", "category"]
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "ingestion_result": {
+            "type": "object",
+            "properties": {
+              "processed": { "type": "number" },
+              "successful": { "type": "number" },
+              "failed": { "type": "number" },
+              "warnings": { "type": "number" },
+              "skipped": { "type": "number" }
+            }
+          },
+          "created_files": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "path": { "type": "string" },
+                "type": { "type": "string" },
+                "quality_score": { "type": "number" }
+              }
+            }
+          },
+          "updated_metadata": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "file": { "type": "string" },
+                "entries_added": { "type": "number" },
+                "entries_updated": { "type": "number" }
+              }
+            }
+          },
+          "issues": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "item": { "type": "string" },
+                "severity": { "type": "string", "enum": ["error", "warning", "info"] },
+                "message": { "type": "string" },
+                "suggestion": { "type": "string" }
+              }
+            }
+          },
+          "progress": {
+            "type": "object",
+            "properties": {
+              "current": { "type": "number" },
+              "total": { "type": "number" },
+              "percentage": { "type": "number" },
+              "estimated_time_remaining": { "type": "number" }
+            }
+          },
+          "audit_trail": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "ingest-single",
+      "displayName": "Ingest Single Item",
+      "description": "Ingest a single item with full validation and quality checks",
+      "category": "ingestion",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "content": {
+            "type": "string",
+            "description": "Raw text content to ingest"
+          },
+          "category": {
+            "type": "string",
+            "enum": ["projects", "achievements", "skills", "clients"],
+            "description": "Category for this item"
+          },
+          "quality_threshold": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100,
+            "description": "Minimum quality threshold",
+            "default": 60
+          }
+        },
+        "required": ["content", "category"]
+      }
+    },
+    {
+      "name": "ingest-from-csv",
+      "displayName": "Ingest from CSV",
+      "description": "Bulk ingest content from a CSV file",
+      "category": "ingestion",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "csv_file_path": {
+            "type": "string",
+            "description": "Path to CSV file (format: category,content)"
+          },
+          "quality_threshold": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100,
+            "default": 60
+          },
+          "auto_commit": {
+            "type": "boolean",
+            "default": false
+          }
+        },
+        "required": ["csv_file_path"]
+      }
+    },
+    {
+      "name": "ingest-from-json",
+      "displayName": "Ingest from JSON",
+      "description": "Bulk ingest content from a JSON file",
+      "category": "ingestion",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "json_file_path": {
+            "type": "string",
+            "description": "Path to JSON file (format: array of {category, content} objects)"
+          },
+          "quality_threshold": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100,
+            "default": 60
+          },
+          "auto_commit": {
+            "type": "boolean",
+            "default": false
+          }
+        },
+        "required": ["json_file_path"]
+      }
+    },
+    {
+      "name": "get-ingestion-status",
+      "displayName": "Get Ingestion Status",
+      "description": "Get current ingestion statistics and repository status",
+      "category": "status",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      }
+    }
+  ],
+  "commands": [
+    {
+      "command": "psb-ingestion.ingestContent",
+      "title": "PSB: Ingest Content (Bulk)",
+      "description": "Bulk load professional content into PSB"
+    },
+    {
+      "command": "psb-ingestion.ingestSingle",
+      "title": "PSB: Ingest Single Item",
+      "description": "Ingest a single item with validation"
+    },
+    {
+      "command": "psb-ingestion.ingestFromCSV",
+      "title": "PSB: Ingest from CSV",
+      "description": "Bulk import from CSV file"
+    },
+    {
+      "command": "psb-ingestion.ingestFromJSON",
+      "title": "PSB: Ingest from JSON",
+      "description": "Bulk import from JSON file"
+    },
+    {
+      "command": "psb-ingestion.getStatus",
+      "title": "PSB: Get Ingestion Status",
+      "description": "View ingestion statistics"
+    }
+  ],
+  "activationEvents": [
+    "onCommand:psb-ingestion.ingestContent",
+    "onCommand:psb-ingestion.ingestSingle",
+    "onCommand:psb-ingestion.ingestFromCSV",
+    "onCommand:psb-ingestion.ingestFromJSON",
+    "onCommand:psb-ingestion.getStatus"
+  ],
+  "dependencies": {
+    "js-yaml": "^4.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0"
+  }
+}

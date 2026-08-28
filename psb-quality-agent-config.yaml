@@ -1,0 +1,267 @@
+# PSB Quality Agent - Configuration File
+# Complete configuration for autonomous quality monitoring
+
+name: PSB-Quality-Agent
+version: 1.0.0
+description: Autonomous quality monitoring and maintenance agent for Professional Second Brain
+
+# ============================================================================
+# AGENT ENABLED STATUS
+# ============================================================================
+enabled: true
+
+# ============================================================================
+# SCAN INTERVALS - Define when to run scans
+# ============================================================================
+scan_intervals:
+  hourly: false
+  daily: true
+  weekly: true
+  monthly: false
+
+# ============================================================================
+# QUALITY THRESHOLDS - Define acceptable quality standards
+# ============================================================================
+quality_thresholds:
+  overall: 70              # Overall quality score target (0-100)
+  fabrication_risk: 30     # Maximum acceptable fabrication risk (0-100, lower is better)
+  confidentiality_risk: 10 # Maximum acceptable confidentiality risk (0-100, lower is better)
+  completeness: 75         # Minimum completeness score (0-100)
+  consistency: 80          # Minimum consistency score (0-100)
+  technology_alignment: 75 # Minimum technology alignment score (0-100)
+  evidence_coverage: 70    # Minimum evidence coverage (0-100)
+  link_validity: 85        # Minimum valid links percentage (0-100)
+
+# ============================================================================
+# AUTO-FIX CONFIGURATION - Automatic issue remediation
+# ============================================================================
+auto_fix:
+  enabled: true
+  
+  # Dimensions to auto-fix
+  dimensions:
+    - completeness
+    - consistency
+    - structure
+    - links
+  
+  # Severity levels to auto-fix
+  severity_levels:
+    - info
+    - warning
+  
+  # Do not auto-fix critical issues without manual review
+  dry_run_by_default: false
+
+# ============================================================================
+# MONITORING CONFIGURATION
+# ============================================================================
+monitoring:
+  # Track quality history for trend analysis
+  track_history: true
+  
+  # Number of days to include in trend analysis
+  trend_window_days: 30
+  
+  # Alert when quality degrades
+  alert_on_degradation: true
+  
+  # Minimum delta to trigger degradation alert (percentage points)
+  degradation_threshold: 5
+
+# ============================================================================
+# REPORTING CONFIGURATION
+# ============================================================================
+reporting:
+  # Supported formats: json, markdown, html, csv
+  formats:
+    - json
+    - markdown
+    - html
+  
+  # Where to save reports by format
+  destination_paths:
+    json: .psb/reports/quality-reports.json
+    markdown: .psb/reports/
+    html: .psb/reports/
+    csv: .psb/reports/
+  
+  # How long to keep reports (days)
+  retention_days: 90
+  
+  # Include detailed issue lists in reports
+  include_details: true
+  
+  # Maximum issues to include per severity level
+  max_issues_per_severity: 20
+
+# ============================================================================
+# NOTIFICATION CONFIGURATION
+# ============================================================================
+notifications:
+  enabled: true
+  
+  # Notification channels to use
+  channels:
+    - console
+    # - slack (requires configuration)
+    # - email (requires configuration)
+    # - github (requires configuration)
+  
+  # Only alert on these severity levels
+  severity_filter:
+    - critical
+    - warning
+  
+  # Specific notification rules
+  rules:
+    # Alert on confidentiality violations immediately
+    confidentiality_violation:
+      enabled: true
+      channels:
+        - console
+      severity: critical
+    
+    # Alert on significant quality degradation
+    quality_degradation:
+      enabled: true
+      channels:
+        - console
+      severity: warning
+      threshold_percentage: 5
+    
+    # Daily summary report
+    daily_summary:
+      enabled: true
+      channels:
+        - console
+      time: "08:00"
+
+# ============================================================================
+# SCAN CONFIGURATION
+# ============================================================================
+scan:
+  # Scope of scan: repository, directory, file
+  scope: repository
+  
+  # Target path (relative to repository root)
+  target_path: .
+  
+  # Files and patterns to exclude from scans
+  exclude_patterns:
+    - node_modules/**
+    - .git/**
+    - .psb/**
+    - build/**
+    - dist/**
+    - '*.min.js'
+    - '*.min.css'
+  
+  # Include hidden files
+  include_hidden: false
+  
+  # Maximum file size to scan (bytes)
+  max_file_size: 10485760 # 10MB
+  
+  # Parallel scans (number of concurrent files)
+  parallel_scans: 4
+
+# ============================================================================
+# SCHEDULE CONFIGURATION
+# ============================================================================
+schedule:
+  # Default daily scan time (HH:mm format)
+  daily_scan_time: "02:00"
+  
+  # Default weekly scan day (0=Sunday, 6=Saturday)
+  weekly_scan_day: 0
+  
+  # Default weekly scan time
+  weekly_scan_time: "03:00"
+  
+  # Timezone for scheduling
+  timezone: UTC
+
+# ============================================================================
+# HISTORY AND STATE MANAGEMENT
+# ============================================================================
+history:
+  # Keep historical data for trend analysis
+  enable_history: true
+  
+  # Directory to store history files
+  history_dir: .psb/history
+  
+  # Maximum history entries to keep
+  max_entries: 365
+  
+  # Purge old entries older than this many days
+  purge_after_days: 365
+
+# ============================================================================
+# QUALITY CHECKER INTEGRATION
+# ============================================================================
+quality_checker:
+  # Path to quality-checker-skill
+  skill_path: ./psb-quality-checker.ts
+  
+  # Enable each dimension
+  dimensions:
+    fabrication: true
+    evidence: true
+    confidentiality: true
+    completeness: true
+    consistency: true
+    technology_matching: true
+    link_validation: true
+    structure_validation: true
+
+# ============================================================================
+# LOGGING CONFIGURATION
+# ============================================================================
+logging:
+  # Log level: debug, info, warn, error
+  level: info
+  
+  # Log file location
+  file: .psb/logs/quality-agent.log
+  
+  # Maximum log file size before rotation (bytes)
+  max_size: 10485760 # 10MB
+  
+  # Number of log files to keep
+  max_files: 10
+  
+  # Include timestamps in logs
+  include_timestamp: true
+  
+  # Include stack traces for errors
+  include_stack_trace: true
+
+# ============================================================================
+# ADVANCED CONFIGURATION
+# ============================================================================
+advanced:
+  # Enable test mode (dry-run without making changes)
+  test_mode: false
+  
+  # Verbose output
+  verbose: false
+  
+  # API endpoints for integrations
+  api:
+    github_api: https://api.github.com
+    slack_webhook: null # Set via environment variable
+    email_service: null # Set via environment variable
+  
+  # Performance tuning
+  performance:
+    cache_enabled: true
+    cache_ttl_seconds: 3600
+    batch_size: 100
+  
+  # Security settings
+  security:
+    verify_ssl: true
+    allow_custom_scripts: false
+    sanitize_paths: true

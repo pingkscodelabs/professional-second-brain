@@ -1,0 +1,177 @@
+{
+  "name": "PSB CV Agent",
+  "id": "psb-cv-agent",
+  "version": "1.0.0",
+  "description": "Autonomous CV generation and management system for Professional Second Brain",
+  "author": "Professional Second Brain",
+  "license": "MIT",
+  "main": "psb-cv-agent.ts",
+  "type": "agent",
+  "keywords": ["cv", "resume", "automation", "job-application"],
+  "capabilities": {
+    "operations": [
+      "generate",
+      "generate_batch",
+      "track",
+      "analyze",
+      "suggest_improvements"
+    ],
+    "formats": ["pdf", "markdown", "text", "json"],
+    "templates": ["resume", "cv", "linkedin"],
+    "features": [
+      "single-cv-generation",
+      "batch-cv-generation",
+      "version-control",
+      "application-tracking",
+      "performance-analytics",
+      "content-suggestions",
+      "format-conversion",
+      "cv-history"
+    ]
+  },
+  "dependencies": {
+    "psb-cv-builder": "1.0.0",
+    "psb-quality-checker": ">=1.0.0",
+    "psb-analyzer": ">=1.0.0"
+  },
+  "configuration": {
+    "configFile": "psb-cv-agent-config.yaml",
+    "defaults": {
+      "format": "pdf",
+      "template": "resume",
+      "storageDirectory": "./generated-cvs"
+    }
+  },
+  "inputs": {
+    "operation": {
+      "type": "string",
+      "description": "The operation to perform",
+      "enum": ["generate", "generate_batch", "track", "analyze", "suggest_improvements"],
+      "required": true
+    },
+    "job_description": {
+      "type": "string",
+      "description": "Single job description for CV generation",
+      "required": false
+    },
+    "job_descriptions": {
+      "type": "array",
+      "description": "Multiple job descriptions for batch generation",
+      "items": { "type": "string" },
+      "required": false
+    },
+    "format": {
+      "type": "string",
+      "description": "Output format for CV",
+      "enum": ["pdf", "markdown", "text", "json"],
+      "default": "pdf",
+      "required": false
+    },
+    "template": {
+      "type": "string",
+      "description": "CV template type",
+      "enum": ["resume", "cv", "linkedin"],
+      "default": "resume",
+      "required": false
+    },
+    "output_path": {
+      "type": "string",
+      "description": "Custom output path for generated CV",
+      "required": false
+    },
+    "include_analytics": {
+      "type": "boolean",
+      "description": "Include analytics in response",
+      "default": false,
+      "required": false
+    },
+    "job_id": {
+      "type": "string",
+      "description": "Job posting ID for tracking",
+      "required": false
+    }
+  },
+  "outputs": {
+    "status": {
+      "type": "string",
+      "description": "Overall operation status",
+      "enum": ["success", "partial", "failed"]
+    },
+    "message": {
+      "type": "string",
+      "description": "Status message"
+    },
+    "operation_result": {
+      "type": "object",
+      "properties": {
+        "generated_count": { "type": "number" },
+        "success_count": { "type": "number" },
+        "failed_count": { "type": "number" },
+        "files_created": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "cv_details": {
+      "type": "object",
+      "description": "Details of generated CV"
+    },
+    "analytics": {
+      "type": "object",
+      "description": "Performance analytics"
+    },
+    "suggestions": {
+      "type": "array",
+      "description": "Content improvement suggestions"
+    }
+  },
+  "permissions": [
+    "read:profile",
+    "read:experience",
+    "read:skills",
+    "write:storage",
+    "read:storage",
+    "network:external"
+  ],
+  "resources": {
+    "documentation": "PSB-CV-Agent-README.md",
+    "quickStart": "PSB-CV-Agent-QUICK-START.md",
+    "apiReference": "PSB-CV-Agent-API-REFERENCE.md",
+    "deploymentGuide": "PSB-CV-Agent-DEPLOYMENT-GUIDE.md",
+    "testScenarios": "PSB-CV-Agent-TEST-SCENARIOS.md"
+  },
+  "systemRequirements": {
+    "nodeVersion": ">=16.0.0",
+    "diskSpace": "500MB",
+    "memory": "512MB"
+  },
+  "configuration": {
+    "required": false,
+    "configFile": "psb-cv-agent-config.yaml"
+  },
+  "logging": {
+    "level": "info",
+    "maxLogSize": "10MB",
+    "retentionDays": 30
+  },
+  "performance": {
+    "maxParallelJobs": 5,
+    "timeoutMs": 120000,
+    "cacheEnabled": true
+  },
+  "telemetry": {
+    "enabled": true,
+    "events": [
+      "cv_generated",
+      "batch_started",
+      "batch_completed",
+      "application_tracked",
+      "analytics_computed"
+    ]
+  },
+  "supportedPlatforms": [
+    "macos",
+    "linux",
+    "windows"
+  ],
+  "releaseNotes": "Initial release of PSB CV Agent with core functionality for CV generation, tracking, and analytics",
+  "changelog": "CHANGELOG.md"
+}

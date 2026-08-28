@@ -1,0 +1,64 @@
+{
+  "name": "psb-ingestion-agent",
+  "version": "1.0.0",
+  "description": "Autonomous agent for bulk loading professional content into Professional Second Brain",
+  "main": "psb-ingestion-agent.ts",
+  "types": "psb-ingestion-agent.ts",
+  "scripts": {
+    "test": "ts-node PSB-Ingestion-Agent-TEST-SCENARIOS.ts",
+    "test:single": "ts-node -e \"import('./psb-ingestion-agent').then(m => m.ingestSingleItem('Led team on Kubernetes migration', 'projects').then(r => console.log(JSON.stringify(r, null, 2))))\"",
+    "test:batch": "ts-node -e \"import('./psb-ingestion-agent').then(m => m.ingestContent({ content_source: 'text', content: ['Item 1', 'Item 2'], category: 'projects', mode: 'batch', auto_commit: false, quality_threshold: 50, skip_duplicates: true })).then(r => console.log(JSON.stringify(r, null, 2))))\"",
+    "test:csv": "ts-node -e \"import('./psb-ingestion-agent').then(m => m.ingestFromCSV('test.csv').then(r => console.log(JSON.stringify(r, null, 2))))\"",
+    "health-check": "ts-node PSB-Ingestion-Agent-DEPLOYMENT-GUIDE.ts",
+    "start": "node -e \"console.log('PSB-Ingestion-Agent ready. Use in your code or CLI.'); console.log('See PSB-Ingestion-Agent-README.md for usage.')\"",
+    "lint": "eslint *.ts",
+    "format": "prettier --write *.ts",
+    "build": "tsc --noEmit"
+  },
+  "keywords": [
+    "professional-development",
+    "knowledge-management",
+    "bulk-import",
+    "automation",
+    "career-documentation",
+    "batch-processing",
+    "ingestion",
+    "psb"
+  ],
+  "author": "Copilot <copilot@github.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/professional-second-brain/repo"
+  },
+  "dependencies": {
+    "js-yaml": "^4.1.0"
+  },
+  "devDependencies": {
+    "@types/js-yaml": "^4.0.5",
+    "@types/node": "^20.0.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "eslint": "^8.0.0",
+    "prettier": "^3.0.0",
+    "ts-node": "^10.9.0",
+    "typescript": "^5.0.0"
+  },
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=8.0.0"
+  },
+  "files": [
+    "psb-ingestion-agent-core.ts",
+    "psb-ingestion-agent.ts",
+    "psb-ingestion-agent-extension.json",
+    "PSB-Ingestion-Agent-README.md",
+    "PSB-Ingestion-Agent-QUICK-START.md",
+    "PSB-Ingestion-Agent-DEPLOYMENT-GUIDE.md",
+    "PSB-Ingestion-Agent-TEST-SCENARIOS.ts"
+  ],
+  "homepage": "https://github.com/professional-second-brain/repo#psb-ingestion-agent",
+  "bugs": {
+    "url": "https://github.com/professional-second-brain/repo/issues"
+  }
+}

@@ -1,0 +1,173 @@
+{
+  "name": "psb-interview-coach",
+  "displayName": "PSB Interview Coach",
+  "description": "Comprehensive interview preparation system for technical and behavioral interviews using documented professional experience",
+  "version": "1.0.0",
+  "publisher": "professional-second-brain",
+  "repository": "https://github.com/pingabdulrehman01/professional-second-brain",
+  "keywords": [
+    "interview",
+    "preparation",
+    "coaching",
+    "STAR",
+    "behavioral",
+    "technical",
+    "mock-interview",
+    "career"
+  ],
+  "engines": {
+    "copilot": ">=1.0.0"
+  },
+  "activationEvents": [
+    "onCommand:psb-interview-coach.prepareInterview",
+    "onCommand:psb-interview-coach.generateQuestions",
+    "onCommand:psb-interview-coach.startMockInterview"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "psb-interview-coach.prepareInterview",
+        "title": "PSB: Prepare for Interview",
+        "description": "Comprehensive interview preparation with question generation, STAR story matching, and mock scenarios"
+      },
+      {
+        "command": "psb-interview-coach.generateQuestions",
+        "title": "PSB: Generate Interview Questions",
+        "description": "Generate specific interview questions for technical or behavioral preparation"
+      },
+      {
+        "command": "psb-interview-coach.startMockInterview",
+        "title": "PSB: Start Mock Interview",
+        "description": "Begin a realistic mock interview session with timed scenarios and feedback"
+      }
+    ],
+    "tools": [
+      {
+        "name": "interview-prep",
+        "displayName": "Prepare for Interview",
+        "description": "Comprehensive interview preparation system that generates questions, matches STAR stories, and orchestrates mock interviews",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "interviewType": {
+              "type": "string",
+              "enum": ["behavioral", "technical", "system_design", "mock_full"],
+              "description": "Type of interview: behavioral questions, technical depth, system design, or full mock"
+            },
+            "companyName": {
+              "type": "string",
+              "description": "Target company name for company-specific research and preparation"
+            },
+            "jobDescription": {
+              "type": "string",
+              "description": "Job description or role details for targeted preparation"
+            },
+            "topicFocus": {
+              "type": "array",
+              "items": {"type": "string"},
+              "description": "Specific topics to focus on (e.g., ['leadership', 'cloud architecture', 'conflict resolution'])"
+            },
+            "difficultyLevel": {
+              "type": "string",
+              "enum": ["junior", "mid", "senior", "staff"],
+              "default": "senior",
+              "description": "Target career level for interview preparation"
+            },
+            "generateFeedback": {
+              "type": "boolean",
+              "default": true,
+              "description": "Generate coaching feedback on preparation areas"
+            }
+          },
+          "required": ["interviewType"]
+        }
+      },
+      {
+        "name": "generate-interview-questions",
+        "displayName": "Generate Interview Questions",
+        "description": "Generate specific interview questions tailored to interview type and topic focus",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "questionType": {
+              "type": "string",
+              "enum": ["behavioral", "technical", "system_design", "company_research"],
+              "description": "Type of questions to generate"
+            },
+            "count": {
+              "type": "number",
+              "default": 10,
+              "description": "Number of questions to generate"
+            },
+            "topics": {
+              "type": "array",
+              "items": {"type": "string"},
+              "description": "Topics for question generation"
+            },
+            "difficultyLevel": {
+              "type": "string",
+              "enum": ["junior", "mid", "senior", "staff"],
+              "default": "senior",
+              "description": "Difficulty level of questions"
+            }
+          },
+          "required": ["questionType"]
+        }
+      },
+      {
+        "name": "start-mock-interview",
+        "displayName": "Start Mock Interview",
+        "description": "Begin a realistic mock interview session with timed questions and AI feedback",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "duration": {
+              "type": "number",
+              "default": 60,
+              "description": "Duration of mock interview in minutes"
+            },
+            "interviewType": {
+              "type": "string",
+              "enum": ["behavioral", "technical", "system_design", "mixed"],
+              "default": "mixed",
+              "description": "Type of mock interview"
+            },
+            "interviewerStyle": {
+              "type": "string",
+              "enum": ["friendly", "challenging", "realistic"],
+              "default": "realistic",
+              "description": "Interview style to simulate"
+            },
+            "focusAreas": {
+              "type": "array",
+              "items": {"type": "string"},
+              "description": "Areas to focus on during mock interview"
+            }
+          },
+          "required": []
+        }
+      },
+      {
+        "name": "match-star-stories",
+        "displayName": "Match STAR Stories",
+        "description": "Match documented achievements to interview scenarios using STAR framework",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "scenario": {
+              "type": "string",
+              "description": "Interview scenario or question to match against achievements"
+            },
+            "topCount": {
+              "type": "number",
+              "default": 5,
+              "description": "Number of top matching achievements to return"
+            }
+          },
+          "required": ["scenario"]
+        }
+      }
+    ]
+  }
+}

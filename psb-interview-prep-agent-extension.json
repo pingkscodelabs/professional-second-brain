@@ -1,0 +1,151 @@
+{
+  "name": "psb-interview-prep-agent",
+  "version": "1.0.0",
+  "displayName": "PSB Interview Prep Agent",
+  "description": "Autonomous agent that orchestrates comprehensive interview preparation using the psb-interview-coach-skill",
+  "publisher": "Professional Second Brain",
+  "license": "MIT",
+  "icon": "icon.png",
+  "activationEvents": [
+    "onCommand:psb-interview-prep-agent.prepare",
+    "onCommand:psb-interview-prep-agent.mockInterview",
+    "onCommand:psb-interview-prep-agent.trackProgress",
+    "onCommand:psb-interview-prep-agent.collectFeedback",
+    "onCommand:psb-interview-prep-agent.updateLearnings"
+  ],
+  "capabilities": {
+    "operations": [
+      {
+        "id": "prepare",
+        "name": "Prepare for Interview",
+        "description": "Generate comprehensive interview preparation materials"
+      },
+      {
+        "id": "mock_interview",
+        "name": "Schedule Mock Interviews",
+        "description": "Orchestrate realistic mock interview sessions"
+      },
+      {
+        "id": "track_performance",
+        "name": "Track Preparation Progress",
+        "description": "Monitor and update preparation progress and readiness"
+      },
+      {
+        "id": "get_feedback",
+        "name": "Collect Interview Feedback",
+        "description": "Gather feedback from real interview experiences"
+      },
+      {
+        "id": "update_learnings",
+        "name": "Update PSB Learnings",
+        "description": "Integrate interview learnings into the Professional Second Brain"
+      },
+      {
+        "id": "get_status",
+        "name": "Get Agent Status",
+        "description": "Retrieve current agent status and statistics"
+      },
+      {
+        "id": "schedule_prep",
+        "name": "Schedule Preparation",
+        "description": "Create optimized preparation timeline and milestones"
+      }
+    ],
+    "models": ["claude-3-5-sonnet"],
+    "tools": ["interview-coach-skill"]
+  },
+  "configuration": {
+    "properties": {
+      "psb.interview-prep-agent.prepIntensity": {
+        "type": "string",
+        "enum": ["light", "moderate", "intensive"],
+        "default": "moderate",
+        "description": "Default preparation intensity level"
+      },
+      "psb.interview-prep-agent.defaultMockCount": {
+        "type": "number",
+        "default": 3,
+        "minimum": 1,
+        "maximum": 10,
+        "description": "Default number of mock interviews to schedule"
+      },
+      "psb.interview-prep-agent.enableFeedbackCollection": {
+        "type": "boolean",
+        "default": true,
+        "description": "Automatically collect feedback after interviews"
+      },
+      "psb.interview-prep-agent.enableLearningUpdates": {
+        "type": "boolean",
+        "default": true,
+        "description": "Automatically update PSB with interview learnings"
+      }
+    }
+  },
+  "commands": [
+    {
+      "command": "psb-interview-prep-agent.prepare",
+      "title": "PSB: Prepare for Interview",
+      "category": "Interview Prep"
+    },
+    {
+      "command": "psb-interview-prep-agent.mockInterview",
+      "title": "PSB: Schedule Mock Interviews",
+      "category": "Interview Prep"
+    },
+    {
+      "command": "psb-interview-prep-agent.trackProgress",
+      "title": "PSB: Track Preparation Progress",
+      "category": "Interview Prep"
+    },
+    {
+      "command": "psb-interview-prep-agent.collectFeedback",
+      "title": "PSB: Collect Interview Feedback",
+      "category": "Interview Prep"
+    },
+    {
+      "command": "psb-interview-prep-agent.updateLearnings",
+      "title": "PSB: Update PSB with Learnings",
+      "category": "Interview Prep"
+    },
+    {
+      "command": "psb-interview-prep-agent.getStatus",
+      "title": "PSB: Get Agent Status",
+      "category": "Interview Prep"
+    },
+    {
+      "command": "psb-interview-prep-agent.schedulePrep",
+      "title": "PSB: Schedule Preparation Timeline",
+      "category": "Interview Prep"
+    }
+  ],
+  "dependencies": {
+    "psb-interview-coach-skill": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^18.0.0",
+    "typescript": "^5.0.0"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "test": "jest",
+    "lint": "eslint src/**/*.ts"
+  },
+  "keywords": [
+    "interview",
+    "preparation",
+    "agent",
+    "orchestration",
+    "mock-interview",
+    "coaching",
+    "professional-development"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/professional-second-brain.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/professional-second-brain/issues"
+  },
+  "homepage": "https://github.com/yourusername/professional-second-brain#readme"
+}

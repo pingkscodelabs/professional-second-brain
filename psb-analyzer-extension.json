@@ -1,0 +1,365 @@
+{
+  "name": "psb-analyzer",
+  "displayName": "PSB Analyzer",
+  "description": "Comprehensive analytics and insight engine for career documentation - analyzes timeline, skills, technologies, projects, achievements, and career trajectory",
+  "version": "1.0.0",
+  "publisher": "professional-second-brain",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourrepo/professional-second-brain"
+  },
+  "keywords": [
+    "analytics",
+    "career-analysis",
+    "insights",
+    "professional-development",
+    "skills-assessment",
+    "career-trajectory",
+    "knowledge-management"
+  ],
+  "engines": {
+    "copilot": ">=1.0.0"
+  },
+  "activationEvents": [
+    "onCommand:psb-analyzer.analyzeCareer"
+  ],
+  "tools": [
+    {
+      "name": "analyze-career-overview",
+      "displayName": "Analyze Career Overview",
+      "description": "Generate comprehensive overview analysis of career history, including timeline, statistics, and high-level insights",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "includeSections": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": ["timeline", "statistics", "insights", "recommendations", "narrative"]
+            },
+            "default": ["timeline", "statistics", "insights", "recommendations", "narrative"],
+            "description": "Sections to include in the analysis"
+          },
+          "timeRange": {
+            "type": "object",
+            "properties": {
+              "startDate": {
+                "type": "string",
+                "format": "date",
+                "description": "Start date for analysis (YYYY-MM-DD)"
+              },
+              "endDate": {
+                "type": "string",
+                "format": "date",
+                "description": "End date for analysis (YYYY-MM-DD)"
+              }
+            },
+            "description": "Optional time range to filter analysis"
+          },
+          "focusArea": {
+            "type": "string",
+            "enum": ["growth", "impact", "breadth", "specialization", "none"],
+            "default": "none",
+            "description": "Specific area to focus insights on"
+          }
+        },
+        "required": []
+      }
+    },
+    {
+      "name": "analyze-timeline",
+      "displayName": "Analyze Career Timeline",
+      "description": "Build chronological view of career experience with dates, roles, and transitions",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "granularity": {
+            "type": "string",
+            "enum": ["years", "quarters", "months"],
+            "default": "years",
+            "description": "Time granularity for timeline analysis"
+          },
+          "includeGaps": {
+            "type": "boolean",
+            "default": true,
+            "description": "Include analysis of gaps between roles"
+          },
+          "visualize": {
+            "type": "boolean",
+            "default": true,
+            "description": "Include ASCII timeline visualization"
+          }
+        },
+        "required": []
+      }
+    },
+    {
+      "name": "analyze-skills",
+      "displayName": "Analyze Skills",
+      "description": "Analyze skill depth, breadth, and trajectory across career history",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "categoryFilter": {
+            "type": "string",
+            "description": "Optional skill category to filter (e.g., 'backend', 'infrastructure', 'leadership')"
+          },
+          "includeEvolution": {
+            "type": "boolean",
+            "default": true,
+            "description": "Include skill evolution over time"
+          },
+          "depthAnalysis": {
+            "type": "boolean",
+            "default": true,
+            "description": "Include depth analysis (years of experience per skill)"
+          },
+          "clusterSkills": {
+            "type": "boolean",
+            "default": true,
+            "description": "Group related skills into clusters"
+          }
+        },
+        "required": []
+      }
+    },
+    {
+      "name": "analyze-technologies",
+      "displayName": "Analyze Technology Stack",
+      "description": "Identify technology clusters, evolution patterns, and specializations",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "groupByCategory": {
+            "type": "boolean",
+            "default": true,
+            "description": "Group technologies by category (cloud, languages, frameworks, etc.)"
+          },
+          "showTimeline": {
+            "type": "boolean",
+            "default": true,
+            "description": "Show technology adoption and usage timeline"
+          },
+          "identifyTrends": {
+            "type": "boolean",
+            "default": true,
+            "description": "Identify technology trends and patterns"
+          },
+          "depthThreshold": {
+            "type": "number",
+            "default": 1,
+            "description": "Minimum depth level (1-5) to include in analysis"
+          }
+        },
+        "required": []
+      }
+    },
+    {
+      "name": "analyze-projects",
+      "displayName": "Analyze Projects",
+      "description": "Identify project patterns, types, scale, and common themes",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "identifyPatterns": {
+            "type": "boolean",
+            "default": true,
+            "description": "Identify common project patterns and themes"
+          },
+          "categorizeByType": {
+            "type": "boolean",
+            "default": true,
+            "description": "Categorize projects by type (infrastructure, development, consulting, etc.)"
+          },
+          "analyzeScale": {
+            "type": "boolean",
+            "default": true,
+            "description": "Analyze project scope and scale"
+          },
+          "duration": {
+            "type": "string",
+            "enum": ["all", "last-year", "last-3-years", "last-5-years"],
+            "default": "all",
+            "description": "Filter projects by time period"
+          }
+        },
+        "required": []
+      }
+    },
+    {
+      "name": "analyze-achievements",
+      "displayName": "Analyze Achievements",
+      "description": "Extract metrics, impact statistics, and achievement patterns",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "extractMetrics": {
+            "type": "boolean",
+            "default": true,
+            "description": "Extract quantifiable metrics from achievements"
+          },
+          "categorizeImpact": {
+            "type": "boolean",
+            "default": true,
+            "description": "Categorize achievements by impact type (cost, performance, team, etc.)"
+          },
+          "identifyPatterns": {
+            "type": "boolean",
+            "default": true,
+            "description": "Identify achievement patterns and themes"
+          },
+          "timeRange": {
+            "type": "string",
+            "enum": ["all", "last-year", "last-3-years", "last-5-years"],
+            "default": "all",
+            "description": "Filter achievements by time period"
+          }
+        },
+        "required": []
+      }
+    },
+    {
+      "name": "analyze-trajectory",
+      "displayName": "Analyze Career Trajectory",
+      "description": "Analyze progression patterns, growth areas, and career direction",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "includeProgression": {
+            "type": "boolean",
+            "default": true,
+            "description": "Analyze seniority and responsibility progression"
+          },
+          "identifyThemes": {
+            "type": "boolean",
+            "default": true,
+            "description": "Identify career themes and focus areas"
+          },
+          "projections": {
+            "type": "boolean",
+            "default": false,
+            "description": "Include future trajectory projections"
+          },
+          "compareBenchmarks": {
+            "type": "boolean",
+            "default": false,
+            "description": "Compare against typical industry trajectories"
+          }
+        },
+        "required": []
+      }
+    },
+    {
+      "name": "analyze-gaps",
+      "displayName": "Analyze Skill Gaps",
+      "description": "Identify skill gaps, learning opportunities, and growth recommendations",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "targetRole": {
+            "type": "string",
+            "description": "Optional target role to analyze gaps against (e.g., 'Staff Engineer', 'VP Engineering')"
+          },
+          "targetIndustry": {
+            "type": "string",
+            "description": "Optional target industry to analyze gaps against"
+          },
+          "trendAnalysis": {
+            "type": "boolean",
+            "default": true,
+            "description": "Analyze gaps based on industry trends"
+          },
+          "prioritizeByImpact": {
+            "type": "boolean",
+            "default": true,
+            "description": "Prioritize gaps by potential impact"
+          },
+          "includeLearningPaths": {
+            "type": "boolean",
+            "default": true,
+            "description": "Include recommended learning paths for gaps"
+          }
+        },
+        "required": []
+      }
+    },
+    {
+      "name": "identify-differentiators",
+      "displayName": "Identify Differentiators",
+      "description": "Find unique strengths, differentiators, and competitive advantages",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "compareToRole": {
+            "type": "string",
+            "description": "Optional role to compare differentiators against"
+          },
+          "focusOnRarity": {
+            "type": "boolean",
+            "default": true,
+            "description": "Focus on rare skill combinations"
+          },
+          "identifyNiches": {
+            "type": "boolean",
+            "default": true,
+            "description": "Identify professional niches and specialties"
+          },
+          "analyzeUniqueness": {
+            "type": "boolean",
+            "default": true,
+            "description": "Analyze what makes this career unique"
+          }
+        },
+        "required": []
+      }
+    }
+  ],
+  "commands": [
+    {
+      "command": "psb-analyzer.analyzeCareer",
+      "title": "PSB: Analyze Career Overview",
+      "description": "Generate comprehensive career analysis with insights and recommendations"
+    },
+    {
+      "command": "psb-analyzer.analyzeTimeline",
+      "title": "PSB: Analyze Timeline",
+      "description": "Build chronological view of career experience"
+    },
+    {
+      "command": "psb-analyzer.analyzeSkills",
+      "title": "PSB: Analyze Skills",
+      "description": "Analyze skill depth, breadth, and trajectory"
+    },
+    {
+      "command": "psb-analyzer.analyzeTechnologies",
+      "title": "PSB: Analyze Technologies",
+      "description": "Identify technology stack and evolution"
+    },
+    {
+      "command": "psb-analyzer.analyzeProjects",
+      "title": "PSB: Analyze Projects",
+      "description": "Identify project patterns and themes"
+    },
+    {
+      "command": "psb-analyzer.analyzeAchievements",
+      "title": "PSB: Analyze Achievements",
+      "description": "Extract metrics and impact statistics"
+    },
+    {
+      "command": "psb-analyzer.analyzeTrajectory",
+      "title": "PSB: Analyze Career Trajectory",
+      "description": "Analyze progression patterns and career direction"
+    },
+    {
+      "command": "psb-analyzer.analyzeGaps",
+      "title": "PSB: Analyze Skill Gaps",
+      "description": "Identify skill gaps and learning opportunities"
+    },
+    {
+      "command": "psb-analyzer.identifyDifferentiators",
+      "title": "PSB: Identify Differentiators",
+      "description": "Find unique strengths and competitive advantages"
+    }
+  ]
+}

@@ -1,0 +1,67 @@
+{
+  "name": "psb-cv-builder",
+  "displayName": "PSB CV Builder",
+  "description": "Generate tailored CVs/resumes by matching job requirements against documented professional experience",
+  "version": "1.0.0",
+  "publisher": "professional-second-brain",
+  "repository": "https://github.com/pingabdulrehman01/professional-second-brain",
+  "keywords": [
+    "cv",
+    "resume",
+    "job-matching",
+    "career",
+    "professional-development"
+  ],
+  "engines": {
+    "copilot": ">=1.0.0"
+  },
+  "activationEvents": ["onCommand:psb-cv-builder.generateCV"],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "psb-cv-builder.generateCV",
+        "title": "PSB: Generate Tailored CV",
+        "description": "Generate a tailored CV based on a job description by matching against your documented experience"
+      }
+    ],
+    "tools": [
+      {
+        "name": "generate-cv",
+        "displayName": "Generate Tailored CV",
+        "description": "Generate a tailored CV/resume by matching job requirements against documented professional experience",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "jobDescription": {
+              "type": "string",
+              "description": "The job description, role title, or requirements to match against. Can be full JD or brief title."
+            },
+            "format": {
+              "type": "string",
+              "enum": ["resume", "cv", "linkedin"],
+              "default": "resume",
+              "description": "Output format: resume (1-page), cv (detailed), or linkedin (profile)"
+            },
+            "maxLength": {
+              "type": "number",
+              "description": "Maximum length in pages (for resume/cv) or characters (for linkedin). Default: 1 page for resume, 2 pages for cv"
+            },
+            "targetLevel": {
+              "type": "string",
+              "enum": ["junior", "mid", "senior", "staff", "principal"],
+              "default": "senior",
+              "description": "Target career level for the CV"
+            },
+            "focusAreas": {
+              "type": "array",
+              "items": {"type": "string"},
+              "description": "Optional areas to emphasize (e.g., ['Cloud Architecture', 'Cost Optimization'])"
+            }
+          },
+          "required": ["jobDescription"]
+        }
+      }
+    ]
+  }
+}

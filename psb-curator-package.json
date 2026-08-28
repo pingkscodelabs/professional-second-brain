@@ -1,0 +1,157 @@
+{
+  "name": "psb-curator-agent",
+  "displayName": "PSB Curator Agent",
+  "description": "Autonomous content organization and curation agent for Professional Second Brain",
+  "version": "1.0.0",
+  "publisher": "psb",
+  "icon": "icon.png",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pingabdulrehman01/professional-second-brain"
+  },
+  "keywords": [
+    "curator",
+    "organization",
+    "curation",
+    "content",
+    "relationships",
+    "metadata",
+    "trends",
+    "professional",
+    "career"
+  ],
+  "categories": [
+    "Other"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "psb-curator.organize",
+        "title": "Organize Content",
+        "category": "PSB Curator"
+      },
+      {
+        "command": "psb-curator.mapRelationships",
+        "title": "Map Relationships",
+        "category": "PSB Curator"
+      },
+      {
+        "command": "psb-curator.enhanceMetadata",
+        "title": "Enhance Metadata",
+        "category": "PSB Curator"
+      },
+      {
+        "command": "psb-curator.identifyTrends",
+        "title": "Identify Trends",
+        "category": "PSB Curator"
+      },
+      {
+        "command": "psb-curator.generateRecommendations",
+        "title": "Generate Recommendations",
+        "category": "PSB Curator"
+      },
+      {
+        "command": "psb-curator.runFullCuration",
+        "title": "Run Full Curation",
+        "category": "PSB Curator"
+      }
+    ],
+    "configuration": {
+      "title": "PSB Curator",
+      "properties": {
+        "psbCurator.autoOrganize": {
+          "type": "boolean",
+          "default": false,
+          "description": "Automatically organize content on save"
+        },
+        "psbCurator.autoEnhanceMetadata": {
+          "type": "boolean",
+          "default": false,
+          "description": "Automatically enhance metadata on save"
+        },
+        "psbCurator.depth": {
+          "type": "string",
+          "default": "detailed",
+          "enum": ["surface", "detailed", "comprehensive"],
+          "description": "Depth of analysis"
+        },
+        "psbCurator.applyChangesAutomatically": {
+          "type": "boolean",
+          "default": false,
+          "description": "Apply changes automatically without confirmation"
+        },
+        "psbCurator.outputFormat": {
+          "type": "string",
+          "default": "json",
+          "enum": ["json", "markdown", "both"],
+          "description": "Output format for curation results"
+        }
+      }
+    },
+    "menus": {
+      "commandPalette": [
+        {
+          "command": "psb-curator.organize"
+        },
+        {
+          "command": "psb-curator.mapRelationships"
+        },
+        {
+          "command": "psb-curator.enhanceMetadata"
+        },
+        {
+          "command": "psb-curator.identifyTrends"
+        },
+        {
+          "command": "psb-curator.generateRecommendations"
+        },
+        {
+          "command": "psb-curator.runFullCuration"
+        }
+      ],
+      "explorer/context": [
+        {
+          "command": "psb-curator.organize",
+          "when": "explorerResourceIsFolder",
+          "group": "psb-curator@1"
+        },
+        {
+          "command": "psb-curator.mapRelationships",
+          "when": "explorerResourceIsFolder",
+          "group": "psb-curator@2"
+        }
+      ]
+    }
+  },
+  "activationEvents": [
+    "workspaceContains:psb-curator-config.yaml",
+    "onCommand:psb-curator.organize",
+    "onCommand:psb-curator.mapRelationships",
+    "onCommand:psb-curator.enhanceMetadata",
+    "onCommand:psb-curator.identifyTrends",
+    "onCommand:psb-curator.generateRecommendations",
+    "onCommand:psb-curator.runFullCuration"
+  ],
+  "main": "./dist/extension.js",
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js",
+    "package": "vsce package"
+  },
+  "devDependencies": {
+    "@types/node": "^18.0.0",
+    "@types/vscode": "^1.75.0",
+    "@typescript-eslint/eslint-plugin": "^5.0.0",
+    "@typescript-eslint/parser": "^5.0.0",
+    "eslint": "^8.0.0",
+    "typescript": "^4.9.0"
+  },
+  "dependencies": {
+    "js-yaml": "^4.1.0"
+  }
+}

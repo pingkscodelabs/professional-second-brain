@@ -1,0 +1,219 @@
+{
+  "name": "psb-quality-agent",
+  "displayName": "PSB Quality Agent",
+  "version": "1.0.0",
+  "description": "Autonomous quality monitoring and maintenance agent for Professional Second Brain repository",
+  "publisher": "Professional Second Brain Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-org/professional-second-brain"
+  },
+  "bugs": {
+    "url": "https://github.com/your-org/professional-second-brain/issues"
+  },
+  "categories": [
+    "Quality Assurance",
+    "Testing",
+    "Monitoring",
+    "Linting"
+  ],
+  "keywords": [
+    "quality",
+    "monitoring",
+    "autonomous",
+    "agent",
+    "fabrication",
+    "evidence",
+    "confidentiality",
+    "copilot",
+    "skill"
+  ],
+  "engines": {
+    "vscode": "^1.80.0",
+    "node": ">=16.0.0"
+  },
+  "main": "./dist/psb-quality-agent-core.js",
+  "types": "./psb-quality-agent-types.ts",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "psb-quality-agent.scan",
+        "title": "PSB Quality: Run Scan",
+        "description": "Run immediate quality audit on repository",
+        "category": "Professional Second Brain"
+      },
+      {
+        "command": "psb-quality-agent.monitor",
+        "title": "PSB Quality: Start Monitoring",
+        "description": "Start continuous quality monitoring",
+        "category": "Professional Second Brain"
+      },
+      {
+        "command": "psb-quality-agent.report",
+        "title": "PSB Quality: Generate Report",
+        "description": "Generate quality report in specified format",
+        "category": "Professional Second Brain"
+      },
+      {
+        "command": "psb-quality-agent.fix",
+        "title": "PSB Quality: Apply Auto-Fixes",
+        "description": "Apply automatic fixes to quality issues",
+        "category": "Professional Second Brain"
+      },
+      {
+        "command": "psb-quality-agent.schedule",
+        "title": "PSB Quality: Manage Schedule",
+        "description": "Manage scheduled quality monitoring operations",
+        "category": "Professional Second Brain"
+      },
+      {
+        "command": "psb-quality-agent.openDashboard",
+        "title": "PSB Quality: Open Dashboard",
+        "description": "Open quality monitoring dashboard",
+        "category": "Professional Second Brain"
+      }
+    ],
+    "configuration": [
+      {
+        "title": "PSB Quality Agent",
+        "properties": {
+          "psb-quality-agent.enabled": {
+            "type": "boolean",
+            "default": true,
+            "description": "Enable PSB Quality Agent"
+          },
+          "psb-quality-agent.qualityThreshold": {
+            "type": "number",
+            "default": 70,
+            "minimum": 0,
+            "maximum": 100,
+            "description": "Minimum acceptable quality score (0-100)"
+          },
+          "psb-quality-agent.autoFixEnabled": {
+            "type": "boolean",
+            "default": true,
+            "description": "Enable automatic fixing of quality issues"
+          },
+          "psb-quality-agent.scanInterval": {
+            "type": "string",
+            "enum": [
+              "hourly",
+              "daily",
+              "weekly",
+              "manual"
+            ],
+            "default": "daily",
+            "description": "Interval for automatic quality scans"
+          },
+          "psb-quality-agent.reportFormat": {
+            "type": "string",
+            "enum": [
+              "json",
+              "markdown",
+              "html",
+              "csv"
+            ],
+            "default": "markdown",
+            "description": "Default format for quality reports"
+          },
+          "psb-quality-agent.notificationsEnabled": {
+            "type": "boolean",
+            "default": true,
+            "description": "Enable notifications for quality issues"
+          },
+          "psb-quality-agent.logLevel": {
+            "type": "string",
+            "enum": [
+              "debug",
+              "info",
+              "warn",
+              "error"
+            ],
+            "default": "info",
+            "description": "Logging level for agent operations"
+          }
+        }
+      }
+    ],
+    "menus": {
+      "commandPalette": [
+        {
+          "command": "psb-quality-agent.scan"
+        },
+        {
+          "command": "psb-quality-agent.monitor"
+        },
+        {
+          "command": "psb-quality-agent.report"
+        },
+        {
+          "command": "psb-quality-agent.fix"
+        },
+        {
+          "command": "psb-quality-agent.schedule"
+        },
+        {
+          "command": "psb-quality-agent.openDashboard"
+        }
+      ],
+      "explorer/context": [
+        {
+          "command": "psb-quality-agent.scan",
+          "group": "7_modification@1",
+          "when": "resourceIsFolder"
+        }
+      ]
+    },
+    "keybindings": [
+      {
+        "command": "psb-quality-agent.scan",
+        "key": "ctrl+shift+q",
+        "mac": "cmd+shift+q",
+        "when": "editorTextFocus"
+      }
+    ],
+    "statusBar": [
+      {
+        "id": "psb-quality-status",
+        "alignment": "left",
+        "priority": 100,
+        "name": "PSB Quality Status"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile",
+    "test": "node ./out/test/runTest.js"
+  },
+  "dependencies": {
+    "js-yaml": "^4.1.0",
+    "chalk": "^5.3.0"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.80.0",
+    "@types/node": "^20.0.0",
+    "@types/mocha": "^10.0.0",
+    "mocha": "^10.0.0",
+    "typescript": "^5.0.0"
+  },
+  "galleryBanner": {
+    "color": "#1e90ff",
+    "theme": "dark"
+  },
+  "icon": "assets/icon.png",
+  "preview": false,
+  "badges": [
+    {
+      "url": "https://img.shields.io/badge/status-production%20ready-brightgreen",
+      "href": "https://github.com/your-org/professional-second-brain",
+      "description": "Production Ready"
+    }
+  ]
+}

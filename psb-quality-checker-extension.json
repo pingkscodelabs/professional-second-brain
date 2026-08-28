@@ -1,0 +1,191 @@
+{
+  "name": "psb-quality-checker",
+  "displayName": "PSB Quality Checker",
+  "description": "Comprehensive quality assurance system for the Professional Second Brain repository - validates fabrication, evidence, confidentiality, completeness, and consistency",
+  "version": "1.0.0",
+  "publisher": "professional-second-brain",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pingabdulrehman01/professional-second-brain"
+  },
+  "keywords": [
+    "quality-assurance",
+    "validation",
+    "fabrication-detection",
+    "evidence-verification",
+    "confidentiality-audit",
+    "consistency-checking",
+    "documentation"
+  ],
+  "engines": {
+    "copilot": ">=1.0.0"
+  },
+  "activationEvents": [
+    "onCommand:psb-quality-checker.checkFile",
+    "onCommand:psb-quality-checker.auditRepository",
+    "onCommand:psb-quality-checker.generateReport"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "psb-quality-checker.checkFile",
+        "title": "PSB: Check File Quality",
+        "description": "Validate a single markdown or YAML file for quality issues"
+      },
+      {
+        "command": "psb-quality-checker.auditRepository",
+        "title": "PSB: Audit Repository Quality",
+        "description": "Run comprehensive quality audit across the entire PSB repository"
+      },
+      {
+        "command": "psb-quality-checker.generateReport",
+        "title": "PSB: Generate Quality Report",
+        "description": "Generate a detailed quality audit report with actionable recommendations"
+      }
+    ],
+    "tools": [
+      {
+        "name": "check-quality",
+        "displayName": "Check File Quality",
+        "description": "Validate a markdown or YAML file for fabrication, evidence, confidentiality, completeness, consistency, and structure issues",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "filePath": {
+              "type": "string",
+              "description": "Path to the file to check (markdown or YAML)"
+            },
+            "dimension": {
+              "type": "string",
+              "enum": [
+                "all",
+                "fabrication",
+                "evidence",
+                "confidentiality",
+                "completeness",
+                "consistency",
+                "structure",
+                "links",
+                "technologies"
+              ],
+              "default": "all",
+              "description": "Specific dimension to check, or 'all' for comprehensive audit"
+            },
+            "verbose": {
+              "type": "boolean",
+              "default": false,
+              "description": "Include detailed analysis and context in results"
+            },
+            "strictMode": {
+              "type": "boolean",
+              "default": false,
+              "description": "Enable strict validation (treat warnings as critical)"
+            }
+          },
+          "required": ["filePath"]
+        }
+      },
+      {
+        "name": "audit-repository",
+        "displayName": "Audit Repository Quality",
+        "description": "Run comprehensive quality audit across the entire PSB repository",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "scope": {
+              "type": "string",
+              "enum": ["all", "projects", "skills", "clients", "experience", "metadata"],
+              "default": "all",
+              "description": "Scope of audit (specific directory or entire repository)"
+            },
+            "dimension": {
+              "type": "string",
+              "enum": [
+                "all",
+                "fabrication",
+                "evidence",
+                "confidentiality",
+                "completeness",
+                "consistency",
+                "structure",
+                "links",
+                "technologies"
+              ],
+              "default": "all",
+              "description": "Specific dimension to audit"
+            },
+            "generateSummary": {
+              "type": "boolean",
+              "default": true,
+              "description": "Generate summary statistics and health scores"
+            },
+            "excludePatterns": {
+              "type": "array",
+              "items": {"type": "string"},
+              "description": "File patterns to exclude (e.g., ['*.draft.md'])"
+            }
+          }
+        }
+      },
+      {
+        "name": "generate-quality-report",
+        "displayName": "Generate Quality Report",
+        "description": "Generate detailed quality report with visualizations and improvement roadmap",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "scope": {
+              "type": "string",
+              "enum": ["file", "directory", "repository"],
+              "default": "repository",
+              "description": "Report scope"
+            },
+            "filePath": {
+              "type": "string",
+              "description": "File or directory path (required if scope is not 'repository')"
+            },
+            "outputFormat": {
+              "type": "string",
+              "enum": ["json", "markdown", "html", "csv"],
+              "default": "markdown",
+              "description": "Report output format"
+            },
+            "includeHistorical": {
+              "type": "boolean",
+              "default": false,
+              "description": "Include historical quality metrics if available"
+            },
+            "focusAreas": {
+              "type": "array",
+              "items": {"type": "string"},
+              "description": "Specific dimensions to emphasize in report"
+            }
+          }
+        }
+      },
+      {
+        "name": "validate-metadata",
+        "displayName": "Validate Metadata Files",
+        "description": "Validate YAML metadata files (projects.yml, skills.yml, etc.) for consistency and completeness",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "metadataType": {
+              "type": "string",
+              "enum": ["projects", "skills", "clients", "technologies", "experience", "all"],
+              "default": "all",
+              "description": "Type of metadata file to validate"
+            },
+            "checkReferences": {
+              "type": "boolean",
+              "default": true,
+              "description": "Verify cross-references between metadata and content files"
+            }
+          }
+        }
+      }
+    ]
+  }
+}
