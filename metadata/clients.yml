@@ -1,0 +1,9 @@
+clients:
+  - name: ""
+    anonymised_name: ""
+    industry: ""
+    region: ""
+    engagement_period: ""
+    confidentiality_level: ""
+    projects: []
+    roles: []

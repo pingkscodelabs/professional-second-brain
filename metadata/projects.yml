@@ -1,0 +1,13 @@
+projects:
+  - name: ""
+    client: ""
+    organisation: ""
+    period: ""
+    role: ""
+    technologies: []
+    team_size: null
+    business_impact: ""
+    technical_impact: ""
+    status: ""
+    confidentiality: ""
+    documentation_link: ""
