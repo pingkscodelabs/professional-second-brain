@@ -10,3 +10,31 @@ skills:
     certifications: []
     last_used: ""
     interview_ready: false
+  - name: "GitOps On-Call Governance"
+    category: "Platform Engineering"
+    level: "ADVANCED"
+    years: null
+    status: "Active"
+    production_experience:
+      - "BBC 24/7 Operations & Incident Orchestration Platform"
+    projects:
+      - "BBC 24/7 Operations & Incident Orchestration Platform"
+    evidence:
+      - "../evidence/achievements/bbc-24x7-mttr-alert-noise-reduction.md"
+    certifications: []
+    last_used: ""
+    interview_ready: true
+  - name: "Incident Response & Alert Telemetry Design"
+    category: "SRE / Platform Engineering"
+    level: "ADVANCED"
+    years: null
+    status: "Active"
+    production_experience:
+      - "BBC 24/7 Operations & Incident Orchestration Platform"
+    projects:
+      - "BBC 24/7 Operations & Incident Orchestration Platform"
+    evidence:
+      - "../evidence/achievements/bbc-24x7-mttr-alert-noise-reduction.md"
+    certifications: []
+    last_used: ""
+    interview_ready: true

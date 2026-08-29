@@ -7,3 +7,66 @@ technologies:
     projects: []
     certifications: []
     status: ""
+  - name: "Terraform"
+    category: "Infrastructure as Code"
+    level: "ADVANCED"
+    years: null
+    production_experience: true
+    projects:
+      - "BBC 24/7 Operations & Incident Orchestration Platform"
+    certifications: []
+    status: "Active"
+  - name: "PagerDuty"
+    category: "Incident Management"
+    level: "ADVANCED"
+    years: null
+    production_experience: true
+    projects:
+      - "BBC 24/7 Operations & Incident Orchestration Platform"
+    certifications: []
+    status: "Active"
+  - name: "AWS Lambda"
+    category: "Cloud / Serverless"
+    level: "ADVANCED"
+    years: null
+    production_experience: true
+    projects:
+      - "BBC 24/7 Operations & Incident Orchestration Platform"
+    certifications: []
+    status: "Active"
+  - name: "GitHub Actions"
+    category: "CI/CD"
+    level: "ADVANCED"
+    years: null
+    production_experience: true
+    projects:
+      - "BBC 24/7 Operations & Incident Orchestration Platform"
+    certifications: []
+    status: "Active"
+  - name: "Harness"
+    category: "CI/CD"
+    level: "INTERMEDIATE"
+    years: null
+    production_experience: true
+    projects:
+      - "BBC 24/7 Operations & Incident Orchestration Platform"
+    certifications: []
+    status: "Active"
+  - name: "Datadog"
+    category: "Observability"
+    level: "ADVANCED"
+    years: null
+    production_experience: true
+    projects:
+      - "BBC 24/7 Operations & Incident Orchestration Platform"
+    certifications: []
+    status: "Active"
+  - name: "Alerta"
+    category: "Observability"
+    level: "INTERMEDIATE"
+    years: null
+    production_experience: true
+    projects:
+      - "BBC 24/7 Operations & Incident Orchestration Platform"
+    certifications: []
+    status: "Active"

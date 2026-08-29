@@ -7,3 +7,13 @@ clients:
     confidentiality_level: ""
     projects: []
     roles: []
+  - name: "BBC (British Broadcasting Corporation)"
+    anonymised_name: ""
+    industry: "Public Service Broadcasting, Digital Media & Streaming Services"
+    region: "United Kingdom"
+    engagement_period: "TBD"
+    confidentiality_level: "INTERNAL"
+    projects:
+      - "BBC 24/7 Operations & Incident Orchestration Platform"
+    roles:
+      - "Platform Engineer / Solution Architect (DevX & Tooling Lead)"

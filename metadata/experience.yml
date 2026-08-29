@@ -7,3 +7,17 @@ experience:
         responsibilities: []
         projects: []
         achievements: []
+  - company: "BBC (British Broadcasting Corporation)"
+    period: "TBD"
+    roles:
+      - title: "Platform Engineer / Solution Architect (DevX & Tooling Lead)"
+        period: "TBD"
+        responsibilities:
+          - "Designed and rolled out GitOps-governed PagerDuty on-call management (Terraform, GitHub Actions, Harness)"
+          - "Built AWS Siren Bridge telemetry deduplication/correlation middleware feeding Alerta and PagerDuty"
+          - "Defined production readiness gates (PIPELINE, SERVICE, SECARC, RBREVIEW, MON)"
+        projects:
+          - "BBC 24/7 Operations & Incident Orchestration Platform"
+        achievements:
+          - "../evidence/achievements/bbc-24x7-mttr-alert-noise-reduction.md"
+          - "../evidence/achievements/bbc-24x7-pagerduty-license-optimization.md"
