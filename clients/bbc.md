@@ -60,6 +60,16 @@
 - [Terraform State Lock Deadlock Resolution](../interview/star-stories/bbc-24x7-terraform-state-lock-resolution.md)
 - [GitOps On-Call Governance Adoption](../interview/star-stories/bbc-24x7-gitops-oncall-governance-leadership.md)
 
+### Interview Questions
+
+- [Alert Deduplication via Siren Bridge](../interview/questions/platform-engineering/bbc-24x7-alert-deduplication-siren-bridge.md)
+- [PagerDuty Escalation Fallback](../interview/questions/platform-engineering/bbc-24x7-pagerduty-escalation-fallback.md)
+- [Alerta vs. PagerDuty Dual Tooling](../interview/questions/architecture/bbc-24x7-alerta-vs-pagerduty-dual-tooling.md)
+- [OIDC Compromised Runner Blast Radius](../interview/questions/devsecops/bbc-24x7-oidc-compromised-runner-blast-radius.md)
+- [Production Readiness Onboarding](../interview/questions/platform-engineering/bbc-24x7-production-readiness-onboarding.md)
+- [Troubleshooting Missing OPS Ticket](../interview/questions/devops/bbc-24x7-troubleshooting-missing-ops-ticket.md)
+- [GitOps Governance Objection Handling](../interview/questions/leadership/bbc-24x7-gitops-governance-objection-handling.md)
+
 ## Confidentiality
 
 **Confidentiality Level**: INTERNAL  
