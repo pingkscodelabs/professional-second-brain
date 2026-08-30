@@ -38,3 +38,69 @@ skills:
     certifications: []
     last_used: ""
     interview_ready: true
+  - name: "Fleet Platform Architecture"
+    category: "Platform Engineering"
+    level: "LEARNING"
+    years: null
+    status: "Reference Architecture"
+    production_experience: []
+    projects:
+      - "Vodafone Fleet Platform Engineering & Developer Self-Service"
+    evidence:
+      - "../projects/platform-engineering/vodafone-fleet-platform-engineering.md"
+    certifications: []
+    last_used: ""
+    interview_ready: true
+  - name: "Developer Self-Service & Golden Paths"
+    category: "Developer Experience"
+    level: "LEARNING"
+    years: null
+    status: "Reference Architecture"
+    production_experience: []
+    projects:
+      - "Vodafone Fleet Platform Engineering & Developer Self-Service"
+    evidence:
+      - "../projects/platform-engineering/vodafone-fleet-platform-engineering.md"
+    certifications: []
+    last_used: ""
+    interview_ready: true
+  - name: "EKS Platform Bootstrap Analysis"
+    category: "Platform Engineering"
+    level: "LEARNING"
+    years: null
+    status: "Reference Implementation"
+    production_experience: []
+    projects:
+      - "Reference EKS Platform with GitOps, OIDC, Policy-as-Code, and Secrets Management"
+    evidence:
+      - "../projects/platform-engineering/reference-terraform-eks-platform-gitops.md"
+      - "../knowledge/references/terraform-eks-platform-reference.md"
+    certifications: []
+    last_used: "2026-08"
+    interview_ready: true
+  - name: "GitLab OIDC Terraform Delivery"
+    category: "DevSecOps"
+    level: "LEARNING"
+    years: null
+    status: "Reference Implementation"
+    production_experience: []
+    projects:
+      - "Reference EKS Platform with GitOps, OIDC, Policy-as-Code, and Secrets Management"
+    evidence:
+      - "../interview/questions/devsecops/reference-eks-gitlab-oidc-terraform.md"
+    certifications: []
+    last_used: "2026-08"
+    interview_ready: true
+  - name: "EKS Access Governance"
+    category: "Cloud Security / Kubernetes"
+    level: "LEARNING"
+    years: null
+    status: "Reference Implementation"
+    production_experience: []
+    projects:
+      - "Reference EKS Platform with GitOps, OIDC, Policy-as-Code, and Secrets Management"
+    evidence:
+      - "../interview/questions/architecture/reference-eks-access-entries-rbac.md"
+    certifications: []
+    last_used: "2026-08"
+    interview_ready: true

@@ -17,3 +17,13 @@ clients:
       - "BBC 24/7 Operations & Incident Orchestration Platform"
     roles:
       - "Platform Engineer / Solution Architect (DevX & Tooling Lead)"
+  - name: "Vodafone"
+    anonymised_name: ""
+    industry: "Telecommunications / Digital Services"
+    region: "TBD"
+    engagement_period: "TBD"
+    confidentiality_level: "INTERNAL"
+    projects:
+      - "Vodafone Fleet Platform Engineering & Developer Self-Service"
+    roles:
+      - "Platform Engineering Architect / Principal Platform Engineer (hypothetical interview framing)"

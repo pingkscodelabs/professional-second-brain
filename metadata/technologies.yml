@@ -70,3 +70,86 @@ technologies:
       - "BBC 24/7 Operations & Incident Orchestration Platform"
     certifications: []
     status: "Active"
+  - name: "Terragrunt"
+    category: "Infrastructure as Code"
+    level: "LEARNING"
+    years: null
+    production_experience: false
+    projects:
+      - "Vodafone Fleet Platform Engineering & Developer Self-Service"
+    certifications: []
+    status: "Reference Architecture"
+  - name: "Amazon EKS"
+    category: "Kubernetes / Cloud"
+    level: "LEARNING"
+    years: null
+    production_experience: false
+    projects:
+      - "Vodafone Fleet Platform Engineering & Developer Self-Service"
+      - "Reference EKS Platform with GitOps, OIDC, Policy-as-Code, and Secrets Management"
+    certifications: []
+    status: "Reference Architecture"
+  - name: "OIDC"
+    category: "Identity / Security"
+    level: "LEARNING"
+    years: null
+    production_experience: false
+    projects:
+      - "Vodafone Fleet Platform Engineering & Developer Self-Service"
+      - "Reference EKS Platform with GitOps, OIDC, Policy-as-Code, and Secrets Management"
+    certifications: []
+    status: "Reference Architecture"
+  - name: "Policy-as-Code"
+    category: "Security / Governance"
+    level: "LEARNING"
+    years: null
+    production_experience: false
+    projects:
+      - "Vodafone Fleet Platform Engineering & Developer Self-Service"
+    certifications: []
+    status: "Reference Architecture"
+  - name: "GitLab CI"
+    category: "CI/CD"
+    level: "LEARNING"
+    years: null
+    production_experience: false
+    projects:
+      - "Reference EKS Platform with GitOps, OIDC, Policy-as-Code, and Secrets Management"
+    certifications: []
+    status: "Reference Implementation"
+  - name: "ArgoCD"
+    category: "GitOps"
+    level: "LEARNING"
+    years: null
+    production_experience: false
+    projects:
+      - "Reference EKS Platform with GitOps, OIDC, Policy-as-Code, and Secrets Management"
+    certifications: []
+    status: "Reference Implementation"
+  - name: "OPA Gatekeeper"
+    category: "Kubernetes Policy"
+    level: "LEARNING"
+    years: null
+    production_experience: false
+    projects:
+      - "Reference EKS Platform with GitOps, OIDC, Policy-as-Code, and Secrets Management"
+    certifications: []
+    status: "Reference Implementation"
+  - name: "External Secrets Operator"
+    category: "Secrets Management"
+    level: "LEARNING"
+    years: null
+    production_experience: false
+    projects:
+      - "Reference EKS Platform with GitOps, OIDC, Policy-as-Code, and Secrets Management"
+    certifications: []
+    status: "Reference Implementation"
+  - name: "Kustomize"
+    category: "Kubernetes Configuration"
+    level: "LEARNING"
+    years: null
+    production_experience: false
+    projects:
+      - "Reference EKS Platform with GitOps, OIDC, Policy-as-Code, and Secrets Management"
+    certifications: []
+    status: "Reference Implementation"
